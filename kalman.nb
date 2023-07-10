@@ -1,0 +1,39 @@
+(* constants *)
+h = 6.62607015*10^-34; (* Planck constant *)
+c = 3*10^8; (* speed of light *)
+e = 1.602176634*10^-19; (* electron charge *)
+
+(* function for irradiance *)
+irradiance[\[Theta]_, d_, a_, \[Lambda]_, n_] := 
+  (2 Cos[(Pi*a*\[Theta])/\[Lambda]]^2*Sin[(n*Pi*d*\[Theta])/\[Lambda]]/(Pi*d*\[Theta]/\[Lambda]))^2
+
+(* function to convert frequency to wavelength *)
+freqToWavelength[freq_] := c/freq
+
+(* interface *)
+Manipulate[
+  Module[{wavelength = freqToWavelength[frequency], k, \[Theta], irradiancePlot, irradianceImage, loggedIrradiance},
+    irradiancePlot = 
+      Plot[irradiance[\[Theta], d, a, wavelength, n], {\[Theta], -\[Pi], \[Pi]}, 
+        PlotRange -> {0, 1}, PlotLabel -> "Multiple Slit Diffraction", 
+        AxesLabel -> {"Theta", If[logScale, "log(Irradiance)", "Irradiance"]},
+        ScalingFunctions -> If[logScale, {"Linear", "Log"}, {"Linear", "Linear"}]];
+    
+    (* Generate "image" *)
+    loggedIrradiance = If[logScale, Log, Identity] @ 
+      Table[irradiance[\[Theta], d, a, wavelength, n], {\[Theta], -\[Pi], \[Pi], 0.01}];
+      
+    irradianceImage = 
+      ArrayPlot[{loggedIrradiance}, FrameTicks -> None, AspectRatio -> 0.1, ColorFunction -> colorMap];
+    
+    Column[{irradiancePlot, irradianceImage, "Current frequency (Hz): " <> ToString[ScientificForm[frequency]], 
+             "Current slit width (m): " <> ToString[ScientificForm[a]], 
+             "Current slit separation (m): " <> ToString[ScientificForm[d]]}]
+  ],
+  {{frequency, 5*10^14, "Frequency (Hz)"}, 4*10^14, 6*10^14},
+  {{a, 10^-6, "Slit width (m)"}, 10^-7, 10^-5},
+  {{d, 10^-6, "Slit separation (m)"}, 10^-7, 10^-5},
+  {{n, 3, "Number of slits"}, 1, 10, 1},
+  {{logScale, False, "Log scale"}, {True, False}},
+  {{colorMap, "TemperatureMap", "Color map"}, {"TemperatureMap", "Rainbow", "SunsetColors", "GrayTones"}}
+]
