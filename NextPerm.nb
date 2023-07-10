@@ -1,14 +1,18 @@
 (* A function to find the next lexicographically greater permutation *)
-nextPermutation[list_] := Module[{n = Length[list], i, j, temp},
-  i = n - 1;
+nextPermutation[list_] := Module[{i = Length[list] - 1, j, pivot, successor, newList},
   While[i >= 1 && list[[i]] >= list[[i + 1]], i--];
   If[i == 0, Return[Reverse[list]]];
-  j = n;
-  While[list[[j]] <= list[[i]], j--];
-  temp = list[[i]];
-  list[[i]] = list[[j]];
-  list[[j]] = temp;
-  Join[Take[list, i], Reverse[Take[list, {i + 1, n}]]]
+  
+  pivot = list[[i]];
+  j = Length[list];
+  While[list[[j]] <= pivot, j--];
+  successor = list[[j]];
+  
+  newList = list;
+  newList[[i]] = successor;
+  newList[[j]] = pivot;
+  
+  Join[Take[newList, i], Reverse[Drop[newList, i]]]
 ]
 
 (* A function to find the next permutation of a number *)
