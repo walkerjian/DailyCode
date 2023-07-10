@@ -1,3 +1,6 @@
+'''
+Kalman Filtering python test, with test cases
+'''
 import numpy as np
 import matplotlib.pyplot as plt
 from ipywidgets import interact, FloatLogSlider, IntSlider, Checkbox, Dropdown
