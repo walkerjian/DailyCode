@@ -84,21 +84,21 @@ assert next_permutation_integer(11111) == 11111  # Edge case: Same digits
 assert next_permutation_integer(5432) == 12345  # Edge case: Descending order
 assert next_permutation_integer(1) == 1  # Edge case: Single digit
 
-import unittest
+# import unittest
 
-class TestNextPermutationInteger(unittest.TestCase):
-    def test_next_permutation_integer(self):
-        self.assertEqual(next_permutation_integer(123), 132)
-        self.assertEqual(next_permutation_integer(132), 213)
-        self.assertEqual(next_permutation_integer(321), 123)  # Edge case: Descending order
-        self.assertEqual(next_permutation_integer(54321), 12345)  # Edge case: Descending order
-        self.assertEqual(next_permutation_integer(23415), 23451)
-        self.assertEqual(next_permutation_integer(987654321), 123456789)  # Edge case: Descending order
-        self.assertEqual(next_permutation_integer(2222), 2222)  # Edge case: Same digits
-        self.assertEqual(next_permutation_integer(11111), 11111)  # Edge case: Same digits
-        self.assertEqual(next_permutation_integer(5432), 12345)  # Edge case: Descending order
-        self.assertEqual(next_permutation_integer(1), 1)  # Edge case: Single digit
+# class TestNextPermutationInteger(unittest.TestCase):
+#     def test_next_permutation_integer(self):
+#         self.assertEqual(next_permutation_integer(123), 132)
+#         self.assertEqual(next_permutation_integer(132), 213)
+#         self.assertEqual(next_permutation_integer(321), 123)  # Edge case: Descending order
+#         self.assertEqual(next_permutation_integer(54321), 12345)  # Edge case: Descending order
+#         self.assertEqual(next_permutation_integer(23415), 23451)
+#         self.assertEqual(next_permutation_integer(987654321), 123456789)  # Edge case: Descending order
+#         self.assertEqual(next_permutation_integer(2222), 2222)  # Edge case: Same digits
+#         self.assertEqual(next_permutation_integer(11111), 11111)  # Edge case: Same digits
+#         self.assertEqual(next_permutation_integer(5432), 12345)  # Edge case: Descending order
+#         self.assertEqual(next_permutation_integer(1), 1)  # Edge case: Single digit
 
-if __name__ == "__main__":
-    unittest.main()
+# if __name__ == "__main__":
+#     unittest.main()
 
