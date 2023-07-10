@@ -3,7 +3,7 @@ Kalman Filtering python test, with test cases
 '''
 import numpy as np
 import matplotlib.pyplot as plt
-# from ipywidgets import interact, FloatLogSlider, IntSlider, Checkbox, Dropdown
+from ipywidgets import interact, FloatLogSlider, IntSlider, Checkbox, Dropdown
 
 # Constants
 h = 6.62607015e-34  # Planck constant
